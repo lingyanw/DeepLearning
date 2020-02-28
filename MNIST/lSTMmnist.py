@@ -51,8 +51,7 @@ def RNN(x, weights, biases):
 pred = RNN(x, weights, biases)
 prediction = tf.nn.softmax(pred)
 #optimization
-#create the cost, optimization, evaluation, and accuracy
-#for the cost softmax_cross_entropy_with_logits seems really good
+
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred, labels=y))
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate).minimize(cost)
 correctPred = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
@@ -108,20 +107,4 @@ testData = mnist.test.images.reshape((-1, nSteps, nInput))
 testLabel = mnist.test.labels
 print("Testing Accuracy:",     sess.run(accuracy, feed_dict={x: testData, y: testLabel}))
     
-    
-    
-    
-    
-
-
-# In[19]:
-
-
-trainingIters
-
-
-# In[20]:
-
-
-displayStep
 
