@@ -78,8 +78,6 @@ def main():
 
     start_time = time.time() # start timing
 
-    # FILL IN THE CODE BELOW TO BUILD YOUR NETWORK
-
     # placeholders for input data and input labeles
     x  = tf.placeholder(tf.float32, [None, 784], name='x')
     y_ = tf.placeholder(tf.float32, [None, 10],  name='y_')
@@ -113,8 +111,6 @@ def main():
     W_fc2 = weight_variable([1024, 10])
     b_fc2 = bias_variable([10])
     y = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2, name='y')
-
-    # FILL IN THE FOLLOWING CODE TO SET UP THE TRAINING
 
     # setup training
     cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))
