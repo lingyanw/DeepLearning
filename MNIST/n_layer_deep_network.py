@@ -39,12 +39,6 @@ def plot_decision_boundary(pred_func, X, y):
     plt.scatter(X[:, 0], X[:, 1], c=y[:,1], cmap=plt.cm.Spectral)
     plt.show()
 
-########################################################################################################################
-########################################################################################################################
-# YOUR ASSSIGMENT STARTS HERE
-# FOLLOW THE INSTRUCTION BELOW TO BUILD AND TRAIN A 3-LAYER NEURAL NETWORK
-########################################################################################################################
-########################################################################################################################
 class NeuralNetwork(object):
     """
     This class builds and trains a neural network
@@ -78,9 +72,6 @@ class NeuralNetwork(object):
         :param type: Tanh, Sigmoid, or ReLU
         :return: activations
         '''
-        #self.z = z
-        #self.type = type
-        # YOU IMPLMENT YOUR actFun HERE
         
         if type == 'tanh':
             activations = np.tanh(z)
@@ -99,7 +90,7 @@ class NeuralNetwork(object):
         :param type: Tanh, Sigmoid, or ReLU
         :return: the derivatives of the activation functions wrt the net input
         '''
-        # YOU IMPLEMENT YOUR diff_actFun HERE
+
         if type == 'tanh':
             deriv = 1.0 - np.tanh(z)**2
         elif type == 'Sigmoid':
@@ -121,7 +112,6 @@ class NeuralNetwork(object):
         :param actFun: activation function
         :return:
         '''
-        # YOU IMPLEMENT YOUR feedforward HERE
    
         self.z1 = X@self.W1 + self.b1
         self.a1 = self.actFun(self.z1,self.actFun_type)
@@ -141,8 +131,6 @@ class NeuralNetwork(object):
         num_examples = len(X)
         self.feedforward(X, lambda x: self.actFun(x, type=self.actFun_type))
         # Calculating the loss
-
-        # YOU IMPLEMENT YOUR CALCULATION OF THE LOSS HERE
 
         data_loss = -np.sum(np.sum(y*np.log(self.probs)))
 
@@ -167,8 +155,6 @@ class NeuralNetwork(object):
         :param y: given labels
         :return: dL/dW1, dL/b1, dL/dW2, dL/db2
         '''
-
-        # IMPLEMENT YOUR BACKPROP HERE
 
         # dL/dW1
         dW2 = (self.a1.T)@(self.probs - y)
@@ -206,11 +192,6 @@ class NeuralNetwork(object):
             self.b1 += -epsilon * db1
             self.W2 += -epsilon * dW2
             self.b2 += -epsilon * db2
-
-            # Optionally print the loss.
-            # This is expensive because it uses the whole dataset, so we don't want to do it too often.
-            #if print_loss and i % 1000 == 0:
-                #print("Loss after iteration %i: %f" % (i, self.calculate_loss(X, y)))
 
     def visualize_decision_boundary(self, X, y):
         '''
@@ -284,9 +265,6 @@ class DeepNeuralNetwork(NeuralNetwork):
             :param y: given labels
             :return: dL/dW1, dL/b1, dL/dW2, dL/db2
             '''
-
-            # IMPLEMENT YOUR BACKPROP HERE
-            # dL/d(last z)
             dz = self.probs - y 
             bp = dz
             dW = [];
@@ -314,8 +292,6 @@ class DeepNeuralNetwork(NeuralNetwork):
             num_examples = len(X)
             self.feedforward(X, lambda x: self.actFun(x, type=self.actFun_type))
             # Calculating the loss
-
-            # YOU IMPLEMENT YOUR CALCULATION OF THE LOSS HERE
 
             data_loss = -np.sum(np.sum(y*np.log(self.probs)))
 
