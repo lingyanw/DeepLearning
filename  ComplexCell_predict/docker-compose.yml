@@ -1,0 +1,26 @@
+version: '3'
+services:
+  notebook:
+    build: .
+    env_file: .env
+    ports:
+      - "8576:8888"  # map port for jupyter lab
+      - "6576:6006"  # map port for tensorboard
+    volumes:
+      - ./:/COMP576
+    entrypoint:
+      - /COMP576/jupyter.sh
+    working_dir: /COMP576
+
+  bash:
+    build: .
+    env_file: .env
+    ports:
+      - "8576:8888"  # map port for jupyter lab
+      - "6576:6006"  # map port for tensorboard
+    volumes:
+      - ./:/COMP576
+    entrypoint: /bin/bash
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTA0NjE4MTA2XX0=
+-->
